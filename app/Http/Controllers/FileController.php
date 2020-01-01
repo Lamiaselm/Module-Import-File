@@ -12,6 +12,7 @@ class FileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /*Recuperer tout les fichiers de la BDD et les afficher */
     public function index()
     {
        $file=Fichiers::all();
@@ -34,26 +35,17 @@ class FileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    /* Sauvegarder le ficher dans le dossier public/upload et sauvegarder son chemin dans la BDD */
     public function store(Request $request)
     {   
-       //$fileOrNm=$request->file->getClientOriginalName();
-       
-
-      ////  $fileNamePath='storage/'.$request->file->getClientOriginalName();
-      //  $fileName = time().'.'.$request->file->getClientOriginalExtension();
-        
-      
-     //   $request->file->storeAs('public',$request->$file);
-        
-
-     
+    
         $file=new Fichiers();
         $file->name=$request->name;
         $uploaded_file=$request->file;
         $fileName=$uploaded_file->getClientOriginalName();
         $uploaded_file->move('upload',$fileName);
         $file->file_path='upload/'.$fileName;
-       // $request->file->storeAs('public',$file);
+      
         
         $file->save();
         return response()->json($file);
