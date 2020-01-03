@@ -20,7 +20,7 @@ class ExampleTest extends TestCase
     public function testHasFile()
     {
         $this->assertDatabaseHas('fichiers', [
-            'file_path' => 'upload/allocation_memoire.pdf'
+            'file_path' => 'upload/[ETIC][Dossier descriptif MEET].pdf'
         ]);  
     }
     public function testUploadFile()
