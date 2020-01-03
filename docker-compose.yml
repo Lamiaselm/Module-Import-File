@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+ 
+  web:
+    build: .
+    ports:
+        - 8000:8000
+    volumes:
+        - ./:/app
+    networks:
+      - app-network
+
+  db:
+    image: mysql
+    environment:
+      - MYSQL_USER=laravel-db-user
+      - MYSQL_PASSWORD=devpassword
+      - MYSQL_DATABASE=laravel-db
+    ports:
+      - 3306:3306
+    networks:
+      - app-network
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
